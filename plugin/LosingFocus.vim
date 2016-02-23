@@ -115,5 +115,3 @@ function! g:RunLosingFocus()
    endif
 
 endfunction
-
-au FocusLost * :call g:RunLosingFocus()
