@@ -3,7 +3,7 @@
 
 " specifiy which packages should be watched in the vimrc
 " using call LosingFocus("AutoCorrect")
-function! LosingFocus(pkg, ...)
+function! g:LosingFocus(pkg, ...)
 
    "check to see if the packages/options list has started already
    if !exists("g:LosingFocusPackages")
@@ -43,7 +43,7 @@ endfunction
 
 
 " LosingFocusLoader determines how to handle each packages/options
-function! LosingFocusLoader(package_call)
+function! s:LosingFocusLoader(package_call)
 
    "the argument is a list with the package name as the first
    "and any arguments after as the second element,
@@ -81,7 +81,7 @@ endfunction
 
 
 " Control how to handle packages/options specified by LosingFocus
-function! RunLosingFocus()
+function! s:RunLosingFocus()
 
    " determine if we have run the function before or not
    if exists("g:LosingFocus_run_count")
@@ -103,7 +103,7 @@ function! RunLosingFocus()
 
          for lfp_i in copy(g:LosingFocusPackages)
 
-            call LosingFocusLoader(lfp_i)
+            call s:LosingFocusLoader(lfp_i)
 
          endfor
 
@@ -116,4 +116,4 @@ function! RunLosingFocus()
 
 endfunction
 
-au FocusLost * :call RunLosingFocus()
+au FocusLost * :call s:RunLosingFocus()
